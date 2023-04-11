@@ -64,8 +64,20 @@ router.delete('/:id', async(req, res) => {
 })
 
 
-// get One product
+router.get('/category', async(req, res) => {
+  try{
+    const sort = {'_id': -1}
+    const category = await Product.find().select('category pictures').sort(sort)
+    // const similar = await Product.find({category: category.category})
+    res.status(200).json(category)
+    
+  }catch(e){
+    res.status(400).send(e.message);
+  }
 
+})
+
+// get One product
 router.get('/:id', async(req, res)=> {
     const {id} = req.params;
     try {
@@ -93,6 +105,20 @@ router.get('/:id', async(req, res)=> {
       res.status(400).send(e.message);
     }
   })
+
+
+  router.get('/categories', async(req, res) => {
+    try{
+      const sort = {'_id' : -1}
+      const category = await Product.find().select('category pictures').sort(sort)
+      res.status(200).json({category})
+      
+    }catch(e){
+      res.status(400).send(e.message);
+    }
+  
+  })
+
 
 // Add to Cart Product
 router.post('/add-to-cart', async(req, res) => {
