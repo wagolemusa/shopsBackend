@@ -67,7 +67,7 @@ router.delete('/:id', async(req, res) => {
 router.get('/category', async(req, res) => {
   try{
     const sort = {'_id': -1}
-    const category = await Product.find().select('category pictures').sort(sort)
+    const category = await Product.find().select('category pictures').sort(sort).limit(4);
     // const similar = await Product.find({category: category.category})
     res.status(200).json(category)
     

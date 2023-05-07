@@ -25,11 +25,14 @@ const OrderSchema = mongoose.Schema({
     type: String,
     default: new Date().toISOString().split('T')[0]
   },
-  address: {
+  district: {
     type: String,
   },
-  country: {
+  town: {
     type: String,
+  },
+  phone: {
+    type: Number,
   }
 }, {minimize: false});
 

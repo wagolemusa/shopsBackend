@@ -7,10 +7,10 @@ router.post('/', async(req, res) => {
 
     const io = req.app.get('socketio');
 
-    const { userId, cart, country, address} = req.body;
+    const { userId, cart, district, town} = req.body;
     try{
         const user = await User.findById(userId);
-        const order = await Order.create({owner: user._id, products: cart, country,address})
+        const order = await Order.create({owner: user._id, products: cart, district,town,phone})
         order.count = cart.count;
         order.total = cart.total;
         await order.save();
@@ -32,7 +32,8 @@ router.post('/', async(req, res) => {
 
 router.get('/', async(req, res)=> {
     try {
-      const orders = await Order.find().populate('owner', ['email', 'name']);
+      const sort = {'_id' : -1}
+      const orders = await Order.find().populate('owner', ['email', 'name']).sort(sort);
       res.status(200).json(orders);
     } catch (e) {
       res.status(400).json(e.message)
