@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io')
 
 const io = new Server(server, {
-    cors: 'http://localhost:3000',
+    cors: 'https://shop-frontend-oeb3vwjhl-wagolemusa.vercel.app',
     methods: ['GET', 'POST', 'PATCH', 'DELETE']
 })
 
