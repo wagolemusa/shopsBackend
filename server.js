@@ -9,8 +9,11 @@ const server = http.createServer(app);
 const { Server } = require('socket.io')
 
 const io = new Server(server, {
-    cors: 'https://shop-frontend-oeb3vwjhl-wagolemusa.vercel.app',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE']
+    cors: {
+        // 'https://shop-frontend-oeb3vwjhl-wagolemusa.vercel.app',
+        origin: "*",
+        methods: ['GET', 'POST', 'PATCH', 'DELETE']
+    }
 })
 
 const User = require('./models/User')

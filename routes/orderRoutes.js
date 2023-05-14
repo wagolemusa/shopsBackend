@@ -7,7 +7,7 @@ router.post('/', async(req, res) => {
 
     const io = req.app.get('socketio');
 
-    const { userId, cart, district, town} = req.body;
+    const { userId, cart, district, town, phone} = req.body;
     try{
         const user = await User.findById(userId);
         const order = await Order.create({owner: user._id, products: cart, district,town,phone})
